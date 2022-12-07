@@ -1,0 +1,38 @@
+version: "3.9"
+
+services:
+  app-backend:
+    image: registryassign2.azurecr.io/backend-image
+    build:
+      context: backend
+      dockerfile: Dockerfile
+    container_name: app-backend
+    restart: on-failure
+    ports:
+      - "8088:8088"
+    depends_on:
+      - app-database
+
+  app-database:
+    image: registryassign2.azurecr.io/postgres:14.1-alpine
+    restart: on-failure
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=ds
+    ports:
+      - "5432:5432"
+      
+  app-frontend:
+    image: registryassign2.azurecr.io/frontend-image
+    restart: on-failure
+    environment:
+      - PORT=3000
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    container_name: app-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - app-backend
