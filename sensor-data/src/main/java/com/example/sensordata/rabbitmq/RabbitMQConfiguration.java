@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMQConfiguration {
 
-    public static final String QUEUE_NAME = "some-queue";
+    public static final String QUEUE_NAME = "sensor-queue-1";
     public static final String TOPIC_EXCHANGE = "some-exchange";
     public static final String ROUTING_KEY = "sensor.#";
 

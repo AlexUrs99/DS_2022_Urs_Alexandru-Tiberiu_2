@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 @Data
 @AllArgsConstructor
-public class Sensor implements Serializable {
+public class SensorRegistrationResponseDto implements Serializable {
     private String id;
     private String value;
     private String timestamp;
